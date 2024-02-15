@@ -1,0 +1,41 @@
+@startuml
+class Utilisateur {
+  +email: String
+  +motDePasse: String
+  +seConnecter()
+  +seDeconnecter()
+}
+
+class Compte {
+  +IBAN: String
+  +solde: Double
+  +devise: String
+  +voirDetail()
+  +editerRIB()
+}
+
+class Virement {
+  +montant: Double
+  +devise: String
+  +beneficiaire: Bénéficiaire
+  +effectuerVirement()
+}
+
+class Bénéficiaire {
+  +nom: String
+  +IBAN: String
+  +ajouterBénéficiaire()
+}
+
+class Application {
+  +modeSombre: Boolean
+  +langue: String = "Anglais"
+  +activerModeSombre()
+  +changerLangue(français)
+}
+
+Utilisateur --> Compte : a accès à
+Utilisateur --> Virement : peut effectuer
+Virement --> Bénéficiaire : cible
+Utilisateur --> Application : configure
+@enduml
